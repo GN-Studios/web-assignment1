@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import mongoose, { ConnectOptions } from "mongoose";
+import postRoutes from "./routes/post.routes";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -19,12 +20,14 @@ DB.once("open", () => {
   console.log("Connected to MongoDB");
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use("/post", postRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

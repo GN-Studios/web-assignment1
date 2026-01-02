@@ -1,0 +1,34 @@
+###
+GET http://localhost:3000/
+
+###
+GET http://localhost:3000/post
+
+###
+GET http://localhost:3000/post/6958449019c4d5bd0eb08bf2
+
+###
+GET http://localhost:3000/post?sender=shaked
+
+###
+POST http://localhost:3000/post
+Content-Type: application/json
+
+{
+  "title": "Pasta in 5 minutes",
+  "content": "The best pasta recipe you can make in just 5 minutes!",
+  "sender": "shaked"
+}
+
+###
+PUT http://localhost:3000/post/6958449019c4d5bd0eb08bf2
+Content-Type: application/json
+
+{
+  "title": "spaghetti",
+  "content": "Delicious spaghetti recipe updated.",
+  "sender": "noam"
+}
+
+###
+DELETE http://localhost:3000/post/695848097ed22f9c579220e1
