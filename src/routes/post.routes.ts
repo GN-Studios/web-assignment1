@@ -1,20 +1,20 @@
 import { Router } from "express";
-import PostController from "../controllers/post.controller";
+import {
+  createPost,
+  deletePost,
+  getAllPosts,
+  getPostById,
+  getPostComments,
+  updatePost,
+} from "../controllers/post.controller";
 
-class PostRoutes {
-  public router: Router = Router();
+const router: Router = Router();
 
-  constructor() {
-    this.initializeRoutes();
-  }
+router.get("/", getAllPosts);
+router.get("/:id", getPostById);
+router.get("/:id/comments", getPostComments);
+router.post("/", createPost);
+router.put("/:id", updatePost);
+router.delete("/:id", deletePost);
 
-  private initializeRoutes() {
-    this.router.get("/", PostController.getAllPosts);
-    this.router.get("/:id", PostController.getPostById);
-    this.router.post("/", PostController.createPost);
-    this.router.put("/:id", PostController.updatePost);
-    this.router.delete("/:id", PostController.deletePost);
-  }
-}
-
-export default new PostRoutes().router;
+export default router;
