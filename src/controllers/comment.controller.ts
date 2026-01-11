@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
-import { Types } from "mongoose";
 import { Comment } from "../models/comment.model";
 import { StatusCodes } from "http-status-codes";
+import { isValidObjectId } from "mongoose";
 import Post from "../models/post.model";
 
 const { OK, BAD_REQUEST, INTERNAL_SERVER_ERROR, NOT_FOUND } = StatusCodes;
-const isValidObjectId = (id: string) => Types.ObjectId.isValid(id);
 
 export const getAllComments = async (req: Request, res: Response) => {
   const comments = await Comment.find({});
@@ -47,7 +46,7 @@ export const getCommentById = async (req: Request, res: Response) => {
 
     const comment = await Comment.findById(id);
     if (!comment) {
-      return res.status(404).json({ message: "Comment not found" });
+      return res.status(NOT_FOUND).json({ message: "Comment not found" });
     }
 
     return res.json(comment);
@@ -85,7 +84,7 @@ export const deleteComment = async (req: Request, res: Response) => {
     const deleted = await Comment.findByIdAndDelete(id);
 
     if (!deleted) {
-      return res.status(404).json({ message: "Comment not found" });
+      return res.status(NOT_FOUND).json({ message: "Comment not found" });
     }
 
     res.status(OK).json(deleted);

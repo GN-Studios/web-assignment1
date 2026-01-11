@@ -4,7 +4,7 @@ import { Comment } from "../models/comment.model";
 import { isValidObjectId } from "mongoose";
 import { StatusCodes } from "http-status-codes";
 
-const { OK, BAD_REQUEST, INTERNAL_SERVER_ERROR } = StatusCodes;
+const { OK, BAD_REQUEST, INTERNAL_SERVER_ERROR, NOT_FOUND } = StatusCodes;
 
 export const getAllPosts = async (req: Request, res: Response) => {
   const { sender } = req.query;
@@ -61,7 +61,7 @@ export const deletePost = async (req: Request, res: Response) => {
   const deletedPost = isValidObjectId(id) ? await Post.findByIdAndDelete(id) : null;
 
   if (!deletedPost) {
-    return res.status(BAD_REQUEST).json({ message: "Post not found" });
+    return res.status(NOT_FOUND).json({ message: "Post not found" });
   }
 
   res.status(OK).json(deletedPost);
