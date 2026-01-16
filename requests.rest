@@ -48,7 +48,7 @@ Content-Type: application/json
 GET http://localhost:3000/comment/69590d893cbcb95db4cfcc3e
 
 ### update comment
-UPDATE http://localhost:3000/comment/69590d893cbcb95db4cfcc3e
+PUT http://localhost:3000/comment/69590d893cbcb95db4cfcc3e
 Content-Type: application/json
 
 {
