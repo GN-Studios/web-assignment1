@@ -1,16 +1,17 @@
 ###
 GET http://localhost:3000/
 
-###
+
+### get all posts
 GET http://localhost:3000/post
 
-###
+### get post by id
 GET http://localhost:3000/post/6958449019c4d5bd0eb08bf2
 
-###
+### get sender posts
 GET http://localhost:3000/post?sender=shaked
 
-###
+### create post
 POST http://localhost:3000/post
 Content-Type: application/json
 
@@ -20,7 +21,7 @@ Content-Type: application/json
   "sender": "shaked"
 }
 
-###
+### update post
 PUT http://localhost:3000/post/6958449019c4d5bd0eb08bf2
 Content-Type: application/json
 
@@ -30,5 +31,32 @@ Content-Type: application/json
   "sender": "noam"
 }
 
-###
+### delete post
 DELETE http://localhost:3000/post/695848097ed22f9c579220e1
+
+### crate comment
+POST http://localhost:3000/comment
+Content-Type: application/json
+
+{
+    "postId": "695908e2d98363b5db52b8eb",
+    "content": "i like you!!!",
+    "sender": "the friend"
+}
+
+### get comment by id
+GET http://localhost:3000/comment/69590d893cbcb95db4cfcc3e
+
+### update comment
+PUT http://localhost:3000/comment/69590d893cbcb95db4cfcc3e
+Content-Type: application/json
+
+{
+    "content": "bestieeeee"
+}
+
+### delete comment
+DELETE http://localhost:3000/comment/69590d893cbcb95db4cfcc3e
+
+### get post comments
+GET http://localhost:3000/post/695908e2d98363b5db52b8eb/comments
